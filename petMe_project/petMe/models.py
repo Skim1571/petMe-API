@@ -7,7 +7,7 @@ class User(models.Model):
   password = models.CharField(max_length=20)
 
   def __str__(self):
-    return self.name
+    return self.username
 
 class Species(models.Model):
   name = models.CharField(max_length=50)
@@ -20,10 +20,10 @@ class Pet(models.Model):
   species = models.ForeignKey(Species, on_delete=models.CASCADE, related_name='pets', unique=True, default=1)
   name = models.CharField(max_length=20)
   age = models.IntegerField()
-  birth_date = models.DateField()
-  hunger = models.IntegerField()
-  affection = models.IntegerField()
-  health = models.IntegerField()
+  birth_date = models.DateField(auto_now_add=True)
+  hunger = models.IntegerField(default=50)
+  affection = models.IntegerField(default=50)
+  health = models.IntegerField(default=100)
   last_play_time = models.DateTimeField()
 
   def __str__(self):
