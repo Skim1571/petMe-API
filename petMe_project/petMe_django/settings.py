@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +25,7 @@ SECRET_KEY = 'django-insecure-e6!n&-f4%vynefvjr0^rdqmv2w1wuxd6l))s(6o#oyy#o@6un(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['petme-skim.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -79,11 +78,10 @@ WSGI_APPLICATION = 'petMe_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd6m7co66s5044b',
-        'HOST': 'ec2-34-234-240-121.compute-1.amazonaws.com',
-        'PORT': 5432,
-        'USER': 'plmkjueenzomzv',
-        'PASSWORD': 'bfa616d14eb6fb94dcbacb66a86eca02f9c942586b73953b9a7419d3aab875f8',
+        'NAME': 'petme',
+        'USER': 'petmeuser',
+        'PASSWORD': 'petMe',
+        'HOST': 'localhost'
     }
 }
 
@@ -130,10 +128,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'staticfiles'))
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
