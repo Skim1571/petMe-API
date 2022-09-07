@@ -17,7 +17,7 @@ class Species(models.Model):
 
 class Pet(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pets', null=True)
-  species = models.ForeignKey(Species, on_delete=models.CASCADE, related_name='pets', unique=True, default=1)
+  species = models.ForeignKey(Species, on_delete=models.CASCADE, related_name='pets', default=1)
   name = models.CharField(max_length=20)
   age = models.IntegerField(default=0)
   birth_date = models.DateField(auto_now_add=True)
