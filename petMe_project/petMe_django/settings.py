@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'petMe',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
