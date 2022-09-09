@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Species,Pet
 from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class SpeciesSerializer(serializers.ModelSerializer):
   class Meta:
@@ -39,3 +40,13 @@ class UserSerializer(serializers.ModelSerializer):
     model = User
     fields = ("id", "username", "password", "email","pets")
 
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+  @classmethod
+  def get_token(cls, user):
+      token = super().get_token(user)
+
+      # Add custom claims
+      token['username'] = user.username
+      # ...
+
+      return token

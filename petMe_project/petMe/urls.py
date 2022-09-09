@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import CreateUserView, SpeciesList, SpeciesDetail, PetList, PetDetail, UserList, UserDetail
+from .views import CreateUserView, SpeciesList, SpeciesDetail, PetList, PetDetail, UserList, UserDetail, MyTokenObtainPairView
 from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
+  path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
   path('users/', UserList.as_view(), name='user_list'),
   path('species/', SpeciesList.as_view(), name='species_list'),
   path('pets/', PetList.as_view(), name='pet_list'),
