@@ -13,9 +13,10 @@ class PetSerializer(WritableNestedModelSerializer):
   species = SpeciesSerializer(
     read_only=False
   )
+
   class Meta:
     model = Pet
-    fields = ('id', 'name', 'age','birth_date','hunger','affection','health','last_play_time','image_url','species')
+    fields = ('id', 'name', 'age','birth_date','hunger','affection','health','last_play_time','image_url','species', 'user')
 
 User = get_user_model()
 
@@ -35,7 +36,7 @@ class UserSerializer(serializers.ModelSerializer):
     return user
   pets = PetSerializer(
   many=True,
-  read_only=True
+  read_only=False
   )
   class Meta:
     model = User
@@ -44,9 +45,10 @@ class UserSerializer(serializers.ModelSerializer):
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
   @classmethod
   def get_token(cls, user):
-      token = super().get_token(user)
+    token = super().get_token(user)
 
-      # Add custom claims
-      token['username'] = user.username
-      # ...
-      return token
+    # Add custom claims
+    token['username'] = user.username
+    token['email'] = user.email
+    # ...
+    return token

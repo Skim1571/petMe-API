@@ -40,4 +40,4 @@ class PetDetail(generics.RetrieveUpdateDestroyAPIView):
   serializer_class = PetSerializer
 
 class MyTokenObtainPairView(TokenObtainPairView):
-    serializer_class = MyTokenObtainPairSerializer
+  serializer_class = MyTokenObtainPairSerializer
