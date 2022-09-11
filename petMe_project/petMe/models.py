@@ -12,6 +12,7 @@ from django.contrib.auth import get_user_model
 
 class Species(models.Model):
   name = models.CharField(max_length=50)
+  image_url = models.CharField(max_length=200, null=True)
 
   def __str__(self):
     return self.name

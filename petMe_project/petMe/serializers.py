@@ -2,15 +2,16 @@ from rest_framework import serializers
 from .models import Species,Pet
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 class SpeciesSerializer(serializers.ModelSerializer):
   class Meta:
     model = Species
-    fields = ('id', 'name',)
+    fields = ('id', 'name','image_url')
 
-class PetSerializer(serializers.ModelSerializer):
+class PetSerializer(WritableNestedModelSerializer):
   species = SpeciesSerializer(
-    read_only=True
+    read_only=False
   )
   class Meta:
     model = Pet
@@ -48,5 +49,4 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
       # Add custom claims
       token['username'] = user.username
       # ...
-
       return token
