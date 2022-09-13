@@ -91,15 +91,10 @@ WSGI_APPLICATION = 'petMe_django.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'petme',
-        'USER': 'petmeuser',
-        'PASSWORD': 'petMe',
-        'HOST': 'localhost'
-    } if os.environ['MODE'] == 'dev' else {'default': {dj_database_url.config(conn_max_age=600)
-}}
+if os.environ['MODE'] == 'dev':
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'petme','USER': 'petmeuser','PASSWORD': 'petMe','HOST': 'localhost'}}
+else:
+    DATABASES = {'default': {dj_database_url.config(conn_max_age=600)}}
 
 # DATABASES = {
 #     'default': {
