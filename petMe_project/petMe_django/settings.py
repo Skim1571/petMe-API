@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj-database-url
+import dj_database_url
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -98,8 +98,8 @@ DATABASES = {
         'USER': 'petmeuser',
         'PASSWORD': 'petMe',
         'HOST': 'localhost'
-    } if os.environ['MODE'] == 'dev' else dj_database_url.config(conn_max_age=600)
-}
+    } if os.environ['MODE'] == 'dev' else {'default': {dj_database_url.config(conn_max_age=600)
+}}
 
 # DATABASES = {
 #     'default': {
