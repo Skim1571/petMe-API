@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
+# import dj_database_url
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
-    'dj-database-url'
+    # 'dj-database-url'
 ]
 
 MIDDLEWARE = [
@@ -94,7 +94,8 @@ WSGI_APPLICATION = 'petMe_django.wsgi.application'
 if os.environ['MODE'] == 'dev':
     DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'petme','USER': 'petmeuser','PASSWORD': 'petMe','HOST': 'localhost'}}
 else:
-    DATABASES = {'default': {dj_database_url.config(conn_max_age=600)}}
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME':'df0d6oa9sht025','USER':'jwelzsjdhfdgnu','PASSWORD':'96a45755515a6463c74c94d18b99e29b7824da07685af73864b41f25c9fb0a39','HOST':'ec2-34-231-42-166.compute-1.amazonaws.com:5432'}}
+    # DATABASES = {'default': {dj_database_url.config(conn_max_age=600)}}
 
 # DATABASES = {
 #     'default': {
