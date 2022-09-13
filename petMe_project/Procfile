@@ -1,1 +1,1 @@
-web: gunicorn petMe_django.wsgi
+web: gunicorn petMe_django.wsgi --log-file -
