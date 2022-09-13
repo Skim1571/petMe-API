@@ -11,12 +11,14 @@ class SpeciesSerializer(serializers.ModelSerializer):
 
 class PetSerializer(WritableNestedModelSerializer):
   species = SpeciesSerializer(
-    read_only=False
+    read_only=False,
+    required=False
   )
 
   class Meta:
     model = Pet
-    fields = ('id', 'name', 'age','birth_date','hunger','affection','health','last_play_time','image_url','species', 'user')
+    fields = ('id', 'name', 'age','birth_date','hunger','affection','health','last_play_time','last_fed_time','image_url','species', 'user')
+
 
 User = get_user_model()
 
