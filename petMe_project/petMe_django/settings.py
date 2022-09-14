@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
-    'dj-database-url',
 ]
 
 
@@ -96,7 +95,7 @@ if os.environ['MODE'] == 'dev':
 else:
     DATABASES = {'default': {dj_database_url.config(conn_max_age=600)}}
 
-DATABASES['default'].update(db_from_env)
+# DATABASES['default'].update(db_from_env)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
