@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn petMe_django.wsgi --preload
+web: gunicorn petMe_django.wsgi --log-file -
