@@ -12,6 +12,7 @@ djangorestframework = "*"
 gunicorn = "*"
 whitenoise = "*"
 djangorestframework-simplejwt = "*"
+drf-writable-nested = "*"
 
 [dev-packages]
 
