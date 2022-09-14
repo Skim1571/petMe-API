@@ -9,6 +9,9 @@ psycopg2-binary = "*"
 django-cors-headers = "*"
 dj-database-url = "*"
 djangorestframework = "*"
+gunicorn = "*"
+whitenoise = "*"
+
 [dev-packages]
 
 [requires]
