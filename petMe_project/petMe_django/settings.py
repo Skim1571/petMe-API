@@ -11,13 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 from pathlib import Path
 import os
-import django_on_heroku
 import dj_database_url
-from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+IS_HEROKU = "DYNO" in os.environ
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -38,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'petMe',
     'rest_framework',
@@ -92,7 +90,7 @@ WSGI_APPLICATION = 'petMe_django.wsgi.application'
 if os.environ['MODE'] == 'dev':
     DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'petme','USER': 'petmeuser','PASSWORD': 'petMe','HOST': 'localhost'}}
 else:
-    DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600, ssl_require=True)}
 
 # DATABASES['default'].update(db_from_env)
 # DATABASES = {
@@ -182,15 +180,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 WHITENOISE_USE_FINDERS = True
 
-STATIC_URL = 'static/'
-STATIC_ROOT=os.path.join(BASE_DIR, "static/")
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_on_heroku.settings(locals())
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)
