@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'petMe_django.wsgi.application'
 if os.environ['MODE'] == 'dev':
     DATABASES = {'default': {'ENGINE': 'django.db.backends.postgresql','NAME': 'petme','USER': 'petmeuser','PASSWORD': 'petMe','HOST': 'localhost'}}
 else:
-    DATABASES = {'default': {dj_database_url.config(conn_max_age=600)}}
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
 # DATABASES['default'].update(db_from_env)
 # DATABASES = {
