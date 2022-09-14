@@ -9,6 +9,10 @@ psycopg2-binary = "*"
 django-cors-headers = "*"
 django_on_heroku = "*"
 dj-database-url = "*"
+rest_framework = "*"
+corsheaders = "*"
+rest_framework_simplejwt = "*"
+rest_framework_simplejwt.token_blacklist = "*"
 
 [dev-packages]
 
