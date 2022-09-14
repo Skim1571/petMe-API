@@ -9,7 +9,6 @@ psycopg2-binary = "*"
 django-cors-headers = "*"
 django_on_heroku = "*"
 dj-database-url = "*"
-rest_framework = "*"
 
 [dev-packages]
 
